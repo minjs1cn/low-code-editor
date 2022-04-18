@@ -1,0 +1,26 @@
+{
+  "name": "@lw/shared",
+  "version": "0.0.1",
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.cjs"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "unbuild",
+    "stub": "unbuild --stub"
+  },
+  "keywords": [
+    "low-code",
+    "typescript",
+    "unbuild"
+  ],
+  "license": "ISC"
+}

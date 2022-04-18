@@ -1,0 +1,14 @@
+{
+  "name": "low-code-editor",
+  "private": true,
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^5.19.0",
+    "@typescript-eslint/parser": "^5.19.0",
+    "eslint": "^8.13.0",
+    "eslint-define-config": "^1.3.0",
+    "eslint-plugin-vue": "^8.6.0",
+    "typescript": "^4.6.3",
+    "unbuild": "^0.7.4",
+    "vite": "^2.9.5"
+  }
+}

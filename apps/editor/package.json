@@ -1,0 +1,20 @@
+{
+  "name": "editor",
+  "version": "1.0.0",
+  "private": "true",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "lint": "eslint --ext .ts,.vue src"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@lw/shared": "workspace:^0.0.1",
+    "vue": "^3.2.33"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^2.3.1"
+  }
+}
