@@ -7,7 +7,7 @@
     "baseUrl": ".",
     "jsx": "preserve",
     "paths": {
-      "@lw/*": [
+      "@lowcode1024/*": [
         "./packages/*/src/"
       ]
     }

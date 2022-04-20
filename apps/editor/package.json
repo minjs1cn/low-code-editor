@@ -1,7 +1,6 @@
 {
   "name": "editor",
-  "version": "1.0.0",
-  "private": "true",
+  "version": "0.0.1",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
@@ -11,7 +10,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@lw/shared": "workspace:^0.0.1",
+    "@lowcode1024/shared": "workspace:^0.0.1",
     "vue": "^3.2.33"
   },
   "devDependencies": {

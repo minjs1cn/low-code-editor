@@ -24,11 +24,11 @@ importers:
 
   apps/editor:
     specifiers:
-      '@lw/shared': workspace:^0.0.1
+      '@lowcode1024/shared': workspace:^0.0.1
       '@vitejs/plugin-vue': ^2.3.1
       vue: ^3.2.33
     dependencies:
-      '@lw/shared': link:../../packages/shared
+      '@lowcode1024/shared': link:../../packages/shared
       vue: 3.2.33
     devDependencies:
       '@vitejs/plugin-vue': 2.3.1_vite@2.9.5+vue@3.2.33
