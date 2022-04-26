@@ -10,10 +10,6 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@lowcode1024/shared": "workspace:^0.0.1",
-    "vue": "^3.2.33"
-  },
-  "devDependencies": {
-    "@vitejs/plugin-vue": "^2.3.1"
+    "@lowcode1024/shared": "workspace:^0.0.1"
   }
 }
