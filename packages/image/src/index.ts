@@ -1,3 +1,11 @@
 import App from './index.vue';
 
-export default App;
+export default {
+	render: App,
+	editorProps: {
+		src: {
+			type: 'string',
+			defaultValue: '//cdn.lowcode.cn/def.png',
+		},
+	},
+};

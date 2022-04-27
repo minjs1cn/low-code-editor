@@ -1,5 +1,5 @@
 {
-  "name": "lc-image",
+  "name": "@lowcode1024/lc-image",
   "version": "0.0.1",
   "main": "./dist/index.cjs",
   "module": "./dist/index.mjs",

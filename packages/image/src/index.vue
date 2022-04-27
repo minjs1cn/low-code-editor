@@ -1,7 +1,11 @@
 <script setup lang="ts">
+import { defineProps } from 'vue';
 
+const { src } = defineProps<{
+  src: string;
+}>()
 </script>
 
 <template>
-  <div>app</div>
+  <img :src="src" />
 </template>

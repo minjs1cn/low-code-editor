@@ -3,5 +3,8 @@
 </script>
 
 <template>
-  <div>app</div>
+  <div>
+    <h1>app</h1>
+    <lc-image />
+  </div>
 </template>

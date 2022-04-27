@@ -11,6 +11,9 @@ export interface IMaterialData {
 
 export interface IMaterial extends IMaterialData {
 	id: number;
+	name: string;
+	title: string;
+	thumbnail: string;
 	/** 类型 */
 	type: string;
 	/** 类目 */
