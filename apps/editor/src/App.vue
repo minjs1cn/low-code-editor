@@ -1,10 +1,9 @@
 <script setup lang="ts">
-
+  import BasicLayout from './components/BasicLayout/BasicLayout.vue';
 </script>
 
 <template>
-  <div>
-    <h1>app</h1>
-    <lc-image />
-  </div>
+  <BasicLayout>
+    <router-view />
+  </BasicLayout>
 </template>

@@ -2,6 +2,8 @@ import { createApp } from 'vue';
 import App from './App.vue';
 import { Project, IMaterial } from '@lowcode1024/shared';
 import { loadScript } from './utils';
+import { router } from './router';
+import './main.less';
 
 console.log(Project.create());
 
@@ -32,5 +34,6 @@ Promise.all(materialList.map((m) => loadScript(m.source))).then(() => {
 		const { render } = (window as any)[m.name];
 		app.component(m.name, render);
 	});
+	app.use(router);
 	app.mount('#app');
 });

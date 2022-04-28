@@ -10,6 +10,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@lowcode1024/shared": "workspace:^0.0.1"
+    "@lowcode1024/shared": "workspace:^0.0.1",
+    "vue-router": "^4.0.14"
   }
 }
