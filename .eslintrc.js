@@ -3,6 +3,7 @@ const { defineConfig } = require('eslint-define-config');
 module.exports = defineConfig({
 	env: {
 		es6: true,
+		node: true,
 	},
 	parser: '@typescript-eslint/parser',
 	parserOptions: {

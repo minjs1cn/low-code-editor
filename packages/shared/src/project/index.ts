@@ -2,6 +2,7 @@ import { IMaterial } from '../material';
 import { uuid } from '../utils';
 
 export interface IProject {
+	id: number;
 	/** 名称 */
 	name: string;
 	/** 描述 */
@@ -33,6 +34,7 @@ export class Project implements IProject {
 	public static create(p?: IProject) {
 		const project = new Project();
 		if (p) {
+			project.id = p.id;
 			project.name = p.name;
 			project.description = p.description;
 			project.pages = p.pages.map((page) => Page.create(page));
@@ -41,6 +43,7 @@ export class Project implements IProject {
 		}
 		return project;
 	}
+	public id: number;
 	public name: string = 'New Project';
 	public description: string = 'New Project Description';
 	public pages: Page[] = [];
