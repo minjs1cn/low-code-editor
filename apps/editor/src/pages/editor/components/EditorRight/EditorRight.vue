@@ -5,27 +5,33 @@ import { computed } from 'vue';
 import './EditorRight.less';
 const projectStore = useProjectStore();
 const editorProps = computed(() => {
-  if (projectStore.currentElement === undefined) {
-    return undefined
+  if (!projectStore.currentElement) {
+    return null;
   }
-  return getMaterialEditorProps(materialMap[projectStore.currentElement.mId])
-})
+  return getMaterialEditorProps(materialMap[projectStore.currentElement.mId]);
+});
 const elementProps = computed(() => {
-  if (projectStore.currentElement === undefined) {
-    return undefined
+  if (!projectStore.currentElement) {
+    return null;
   }
-  return projectStore.currentElement.props
-})
-const onPropsChange = (e: Event) => {
-  console.log((e.target as HTMLInputElement).value)
+  return projectStore.currentElement.props;
+});
+function onPropsChange(e: Event) {
+  const target = e.target as HTMLInputElement;
+  console.log(target.value);
   projectStore.changeElementProps({
-    src: (e.target as HTMLInputElement).value
-  })
+    src: target.value,
+  });
 }
 </script>
 
 <template>
   <div class="editor-right">
-    <input v-if="editorProps !== undefined" type="text" :value="elementProps.src" @change="onPropsChange($event)">
+    <input
+      v-if="editorProps !== undefined"
+      type="text"
+      :value="elementProps.src"
+      @change="onPropsChange($event)"
+    >
   </div>
 </template>

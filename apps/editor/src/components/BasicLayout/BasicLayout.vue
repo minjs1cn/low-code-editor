@@ -1,6 +1,6 @@
 <script setup lang="ts">
-  import BasicHeader from '../BasicHeader/BasicHeader.vue'
-  import './BasicLayout.less';
+import BasicHeader from '../BasicHeader/BasicHeader.vue';
+import './BasicLayout.less';
 </script>
 
 <template>
@@ -9,7 +9,7 @@
       <BasicHeader />
     </div>
     <div class="basic-layout-content">
-      <slot></slot>
+      <slot />
     </div>
   </div>
 </template>

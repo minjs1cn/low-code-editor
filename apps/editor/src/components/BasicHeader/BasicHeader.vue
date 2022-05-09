@@ -1,7 +1,9 @@
 <script setup lang="ts">
-  import './BasicHeader.less'
+import './BasicHeader.less';
 </script>
 
 <template>
-  <div class="basic-header">BasicHeader.vue</div>
+  <div class="basic-header">
+    BasicHeader.vue
+  </div>
 </template>

@@ -7,9 +7,9 @@ import { useProjectStore } from '@/store';
 
 const projectStore = useProjectStore();
 
-const onClick = (e: Event, m: IMaterial) => {
+function onClick(e: Event, m: IMaterial) {
   console.log('click', m);
-  const ele = PageElement.create()
+  const ele = PageElement.create();
   ele.mId = m.id;
   ele.mVersion = m.version;
   ele.props = getMaterialDefaultProps(m);
@@ -20,7 +20,12 @@ const onClick = (e: Event, m: IMaterial) => {
 
 <template>
   <div class="editor-left">
-    <div v-for="item in materialList" :key="item.id" class="material" @click="onClick($event, item)">
+    <div
+      v-for="item in materialList"
+      :key="item.id"
+      class="material"
+      @click="onClick($event, item)"
+    >
       <MaterialBlock :title="item.title" />
     </div>
   </div>

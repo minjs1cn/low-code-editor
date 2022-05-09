@@ -1,7 +1,7 @@
 <script setup lang="ts">
-
+const title = 'hello index';
 </script>
 
 <template>
-  <div>index.vue</div>
+  <div>{{ title }}</div>
 </template>

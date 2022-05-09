@@ -5,9 +5,11 @@ import { defineProps } from 'vue';
 interface IMaterialBlock {
   title: string;
 }
-const { title } = defineProps<IMaterialBlock>()
+const props = defineProps<IMaterialBlock>();
 </script>
 
 <template>
-  <div class="material-block">{{title}}</div>
+  <div class="material-block">
+    {{ props.title }}
+  </div>
 </template>
