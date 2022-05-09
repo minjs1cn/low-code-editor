@@ -1,4 +1,3 @@
-import { IMaterial } from '../material';
 import { uuid } from '../utils';
 
 export interface IProject {
@@ -20,6 +19,11 @@ export interface IPage {
 	elements: IElement[];
 }
 
+export interface IElementStyle {
+	width?: number;
+	height?: number;
+}
+
 export interface IElement {
 	id: string;
 	/** 名称 */
@@ -28,6 +32,10 @@ export interface IElement {
 	mId: number;
 	/** 物料版本 */
 	mVersion: string;
+	/** 元素样式 */
+	style: IElementStyle;
+	/** 元素的属性 */
+	props: Record<string, any>;
 }
 
 export class Project implements IProject {
@@ -37,7 +45,7 @@ export class Project implements IProject {
 			project.id = p.id;
 			project.name = p.name;
 			project.description = p.description;
-			project.pages = p.pages.map((page) => Page.create(page));
+			project._pages = p.pages.map((page) => Page.create(page));
 		} else {
 			project.addPage(Page.create());
 		}
@@ -46,30 +54,38 @@ export class Project implements IProject {
 	public id: number;
 	public name: string = 'New Project';
 	public description: string = 'New Project Description';
-	public pages: Page[] = [];
+	private _pages: Page[] = [];
+	public get pages() {
+		return this._pages.map((p) => p.getJson());
+	}
 
 	constructor() {}
 
 	public addPage(page: Page) {
-		this.pages.push(page);
+		this._pages.push(page);
+	}
+
+	public getPageByIndex(index: number) {
+		return this._pages[index];
 	}
 
 	public removePage(page: Page) {
-		const index = this.pages.indexOf(page);
+		const index = this._pages.indexOf(page);
 		if (index >= 0) {
-			this.pages.splice(index, 1);
+			this._pages.splice(index, 1);
 		}
 	}
 
 	public insertPage(index: number, page: Page) {
-		this.pages.splice(index, 0, page);
+		this._pages.splice(index, 0, page);
 	}
 
-	public getJson() {
+	public getJson(): IProject {
 		return {
+			id: this.id,
 			name: this.name,
 			description: this.description,
-			pages: this.pages.map((page) => page.getJson()),
+			pages: this.pages,
 		};
 	}
 }
@@ -80,37 +96,44 @@ export class Page implements IPage {
 		if (p) {
 			page.name = p.name;
 			page.description = p.description;
-			page.elements = p.elements.map((element) => PageElement.create(element));
+			page._elements = p.elements.map((element) => PageElement.create(element));
 		}
 		return page;
 	}
 
 	public name: string = 'New Page';
 	public description: string = 'New Page Description';
-	public elements: PageElement[] = [];
+	private _elements: PageElement[] = [];
+	public get elements() {
+		return this._elements.map((p) => p.getJson());
+	}
 
 	constructor() {}
 
 	public addElement(element: PageElement) {
-		this.elements.push(element);
+		this._elements.push(element);
+	}
+
+	public getElementById(id: string) {
+		return this._elements.find((e) => e.id === id);
 	}
 
 	public removeElement(element: PageElement) {
-		const index = this.elements.indexOf(element);
+		const index = this._elements.indexOf(element);
 		if (index >= 0) {
-			this.elements.splice(index, 1);
+			this._elements.splice(index, 1);
 		}
 	}
 
 	public insertElement(index: number, element: PageElement) {
-		this.elements.splice(index, 0, element);
+		this._elements.splice(index, 0, element);
 	}
 
-	public getJson() {
+	public getJson(): IPage {
 		return {
 			name: this.name,
 			description: this.description,
-			elements: this.elements.map((element) => element.getJson()),
+			elements: this.elements,
 		};
 	}
 }
@@ -123,6 +146,8 @@ export class PageElement implements IElement {
 			element.name = e.name;
 			element.mId = e.mId;
 			element.mVersion = e.mVersion;
+			element.style = e.style;
+			element.props = e.props;
 		}
 		return element;
 	}
@@ -130,15 +155,19 @@ export class PageElement implements IElement {
 	public name: string = 'New Element';
 	public mId: number;
 	public mVersion: string;
+	public style: IElementStyle = {};
+	public props: Record<string, any> = {};
 
 	constructor() {}
 
-	public getJson() {
+	public getJson(): IElement {
 		return {
 			id: this.id,
 			name: this.name,
 			mId: this.mId,
 			mVersion: this.mVersion,
+			style: this.style,
+			props: this.props,
 		};
 	}
 }

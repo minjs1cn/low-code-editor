@@ -1,5 +1,4 @@
-import { defineConfig } from 'vite';
-import path from 'path';
+import { defineConfig, PluginOption } from 'vite';
 import vue from '@vitejs/plugin-vue';
 import Pages from 'vite-plugin-pages';
 import paths from 'vite-tsconfig-paths';
@@ -9,8 +8,7 @@ export default defineConfig({
 	plugins: [
 		viteMocker({
 			delay: [0, 1000],
-		}),
-		// TODO 不生效的原因？
+		}) as unknown as PluginOption,
 		paths({
 			loose: true,
 		}),
@@ -19,9 +17,4 @@ export default defineConfig({
 			exclude: ['**/components/*'],
 		}),
 	],
-	resolve: {
-		alias: {
-			'@': path.resolve(__dirname, 'src'),
-		},
-	},
 });
