@@ -1,6 +1,6 @@
 import { defineStore } from 'pinia';
 import { computed, ref } from 'vue';
-import { IProject, PageElement, Project } from '@lowcode1024/shared';
+import { IElement, IProject, PageElement, Project } from '@lowcode1024/shared';
 
 // 实例
 const p = Project.create();
@@ -12,9 +12,22 @@ export const useProjectStore = defineStore('project', () => {
   const currentPage = computed(() => project.value.pages[currentPageIndex.value]);
   const currentPageElements = computed(() => project.value.pages[currentPageIndex.value].elements);
   const currentElementIndex = ref(0);
-  const currentElement = computed(() => currentPageElements.value[currentElementIndex.value]);
+  const currentElementId = ref();
+  const currentElement = computed(() => {
+    if (currentElementId.value) {
+      return p
+        .getPageByIndex(currentPageIndex.value)
+        .getElementById(currentElementId.value);
+    }
+    return currentPageElements[currentElementIndex.value];
+  });
+
+  function setCurrentElement(id: string) {
+    currentElementId.value = id;
+  }
 
   function addElement(ele: PageElement) {
+    currentElementId.value = ele.id;
     p.getPageByIndex(currentPageIndex.value).addElement(ele);
     project.value = p.getJson();
   }
@@ -30,6 +43,17 @@ export const useProjectStore = defineStore('project', () => {
     project.value = p.getJson();
   }
 
+  function changeElementStyle(style: Record<string, any>) {
+    const element = p
+      .getPageByIndex(currentPageIndex.value)
+      .getElementById(currentElement.value.id);
+    element.style = {
+      ...element.style,
+      ...style,
+    };
+    project.value = p.getJson();
+  }
+
   return {
     project,
     currentPage,
@@ -38,5 +62,7 @@ export const useProjectStore = defineStore('project', () => {
 
     addElement,
     changeElementProps,
+    changeElementStyle,
+    setCurrentElement,
   };
 });

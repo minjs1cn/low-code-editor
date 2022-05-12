@@ -28,7 +28,7 @@ function onPropsChange(e: Event) {
 <template>
   <div class="editor-right">
     <input
-      v-if="editorProps !== undefined"
+      v-if="editorProps"
       type="text"
       :value="elementProps.src"
       @change="onPropsChange($event)"

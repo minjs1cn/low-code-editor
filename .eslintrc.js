@@ -3,7 +3,4 @@ const { defineConfig } = require('eslint-define-config');
 
 module.exports = defineConfig({
   extends: [ 'jammy/vue' ],
-  rules: {
-    'object-shorthand': [ 'error', 'always' ],
-  },
 });

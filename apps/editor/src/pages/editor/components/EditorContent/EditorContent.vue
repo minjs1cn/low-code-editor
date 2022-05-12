@@ -3,11 +3,25 @@ import { useProjectStore } from '@/store';
 import './EditorContent.less';
 import { materialMap } from '@/data';
 import { watchEffect } from 'vue';
+import VueDragResize from 'vue-drag-resize-next';
+import './style.css';
 
 const projectStore = useProjectStore();
 watchEffect(() => {
   console.log(projectStore.currentPageElements[0]);
 });
+
+function onDragEnd(ev: any) {
+  console.log(ev);
+  const { x, y, ...reset } = ev;
+
+  const left = Math.min(Math.max(x, 0), 630 - reset.width);
+  projectStore.changeElementStyle({
+    left,
+    top: y,
+    ...reset,
+  });
+}
 </script>
 
 <template>
@@ -16,10 +30,23 @@ watchEffect(() => {
       v-for="item in projectStore.currentPageElements"
       :key="item.id"
     >
-      <component
-        :is="materialMap[item.mId].name"
-        v-bind="item.props"
-      />
+      <VueDragResize
+        :active="projectStore.currentElement?.id === item.id"
+        :x="item.style.left || 0"
+        :y="item.style.top || 0"
+        :width="item.style.width"
+        :height="item.style.height"
+        :rotatable="false"
+        :immediate="true"
+        @click="projectStore.setCurrentElement(item.id)"
+        @dragging="onDragEnd"
+        @resizing="onDragEnd"
+      >
+        <component
+          :is="materialMap[item.mId].name"
+          v-bind="item.props"
+        />
+      </VueDragResize>
     </div>
   </div>
 </template>
