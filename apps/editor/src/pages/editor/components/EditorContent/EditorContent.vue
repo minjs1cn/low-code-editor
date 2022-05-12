@@ -4,7 +4,7 @@ import './EditorContent.less';
 import { materialMap } from '@/data';
 import { watchEffect } from 'vue';
 import VueDragResize from 'vue-drag-resize-next';
-import './style.css';
+import 'vue-drag-resize-next/lib/style.css';
 
 const projectStore = useProjectStore();
 watchEffect(() => {

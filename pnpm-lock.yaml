@@ -43,12 +43,12 @@ importers:
     specifiers:
       '@lowcode1024/shared': workspace:^0.0.1
       pinia: ^2.0.13
-      vue-drag-resize-next: ^0.0.2-alpha.2
+      vue-drag-resize-next: ^0.0.2-alpha.3
       vue-router: ^4.0.14
     dependencies:
       '@lowcode1024/shared': link:../../packages/shared
       pinia: 2.0.13_typescript@4.6.3+vue@3.2.33
-      vue-drag-resize-next: 0.0.2-alpha.2
+      vue-drag-resize-next: 0.0.2-alpha.3
       vue-router: 4.0.14_vue@3.2.33
 
   packages/image:
@@ -3154,8 +3154,8 @@ packages:
       vue: 3.2.33
     dev: false
 
-  /vue-drag-resize-next/0.0.2-alpha.2:
-    resolution: {integrity: sha512-5c0HyN6Hv6dZVGhADsKIwqZVpOfN1EYWy9yb+z8c01bcI9wQjOSA4cB76U2xzY766uUCwSawz7g+4E0qlmh1DA==}
+  /vue-drag-resize-next/0.0.2-alpha.3:
+    resolution: {integrity: sha512-iNEQH8Gf4QITUXykLBWpEpybxDJUNS1PrYL7D7tcEg/BXPsCUBuFlMydq3gOCucQy0w+qf3UAo1tSEEjJ0cv1w==}
     dependencies:
       vue: 3.2.33
     dev: false
