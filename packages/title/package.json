@@ -1,0 +1,32 @@
+{
+  "name": "@lowcode1024/lc-title",
+  "version": "0.0.1",
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.cjs"
+    }
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/minjs1cn/low-code-editor"
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "vite build"
+  },
+  "keywords": [
+    "low-code",
+    "typescript"
+  ],
+  "license": "MIT",
+  "dependencies": {}
+}

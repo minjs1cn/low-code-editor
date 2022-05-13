@@ -1,12 +1,16 @@
 import { defineStore } from 'pinia';
 import { computed, ref } from 'vue';
-import { IElement, IProject, PageElement, Project } from '@lowcode1024/shared';
+import { IElement, IMaterial, IProject, PageElement, Project } from '@lowcode1024/shared';
+import { getMaterialRenderFun, getMaterialDefaultProps } from '@/data';
+import { loadMaterial } from '@/utils';
+import app from '../app';
 
 // 实例
 const p = Project.create();
 // 响应式对象
 
 export const useProjectStore = defineStore('project', () => {
+  const materials = ref<Record<string, IMaterial>>({});
   const project = ref<IProject>(p.getJson());
   const currentPageIndex = ref(0);
   const currentPage = computed(() => project.value.pages[currentPageIndex.value]);
@@ -54,6 +58,39 @@ export const useProjectStore = defineStore('project', () => {
     project.value = p.getJson();
   }
 
+  function isLoaded(mid: number) {
+    return materials.value[mid];
+  }
+
+  function changeElementPropsByMid(mid: number, props: Record<string, any>) {
+    const elements = p
+      .getPageByIndex(currentPageIndex.value)
+      .getElementByMid(mid);
+
+    elements.forEach(element => {
+      element.props = {
+        ...element.props,
+        ...props,
+      };
+    });
+
+    project.value = p.getJson();
+  }
+
+  async function load(material: IMaterial) {
+    if (isLoaded(material.id)) {
+      return;
+    }
+    await loadMaterial(material);
+    const renderFun = getMaterialRenderFun(material);
+    app.component(material.name, renderFun);
+    materials.value = {
+      ...materials.value,
+      [material.id]: material,
+    };
+    changeElementPropsByMid(material.id, getMaterialDefaultProps(material));
+  }
+
   return {
     project,
     currentPage,
@@ -64,5 +101,8 @@ export const useProjectStore = defineStore('project', () => {
     changeElementProps,
     changeElementStyle,
     setCurrentElement,
+
+    load,
+    isLoaded,
   };
 });

@@ -2,17 +2,12 @@
 import { useProjectStore } from '@/store';
 import './EditorContent.less';
 import { materialMap } from '@/data';
-import { watchEffect } from 'vue';
 import VueDragResize from 'vue-drag-resize-next';
 import 'vue-drag-resize-next/lib/style.css';
 
 const projectStore = useProjectStore();
-watchEffect(() => {
-  console.log(projectStore.currentPageElements[0]);
-});
 
 function onDragEnd(ev: any) {
-  console.log(ev);
   const { x, y, ...reset } = ev;
 
   const left = Math.min(Math.max(x, 0), 630 - reset.width);
@@ -44,8 +39,12 @@ function onDragEnd(ev: any) {
       >
         <component
           :is="materialMap[item.mId].name"
+          v-if="projectStore.isLoaded(item.mId)"
           v-bind="item.props"
         />
+        <div v-else>
+          loading
+        </div>
       </VueDragResize>
     </div>
   </div>

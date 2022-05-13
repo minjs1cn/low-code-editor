@@ -42,6 +42,10 @@ export class Page implements IPage {
     return this._elements.find(e => e.id === id);
   }
 
+  public getElementByMid(mid: number) {
+    return this._elements.filter(item => item.mId === mid);
+  }
+
   public removeElement(element: PageElement) {
     const index = this._elements.indexOf(element);
     if (index >= 0) {

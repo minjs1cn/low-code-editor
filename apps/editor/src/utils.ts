@@ -1,6 +1,10 @@
 /* eslint-disable no-multi-assign */
 import { IMaterial } from '@lowcode1024/shared';
 
+export function delay(ms: number) {
+  return new Promise(resolve => setTimeout(resolve, ms));
+}
+
 export function loadCss(src: string) {
   return new Promise((resolve, reject) => {
     const sc = document.createElement('link');
@@ -33,6 +37,11 @@ export function loadScript(src: string) {
   });
 }
 
+export async function loadMaterial(m: IMaterial) {
+  await delay(10000);
+  return loadScript(m.source);
+}
+
 export function loadMaterials(materials: IMaterial[]) {
-  return Promise.all(materials.map(m => loadScript(m.source)));
+  return Promise.all(materials.map(m => loadMaterial(m)));
 }
