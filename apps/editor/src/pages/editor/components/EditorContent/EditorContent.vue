@@ -6,6 +6,7 @@ import VueDragResize from 'vue-drag-resize-next';
 import 'vue-drag-resize-next/lib/style.css';
 import { useRouter } from 'vue-router';
 import { onMounted, ref } from 'vue';
+import { IElement } from '@lowcode1024/shared';
 
 const projectStore = useProjectStore();
 const route = useRouter();
@@ -42,6 +43,18 @@ function onSave() {
 function onPreview() {
   route.push('/preview');
 }
+
+function onPageAdd() {
+  projectStore.addPage();
+}
+
+function onPageClick(index: number) {
+  projectStore.setCurrentPageIndex(index);
+}
+
+function onElementClick(ele: IElement) {
+  projectStore.setCurrentElement(ele.id);
+}
 </script>
 
 <template>
@@ -54,35 +67,65 @@ function onPreview() {
         预览
       </button>
     </div>
-    <div
-      ref="pageRef"
-      class="editor-content-page"
-    >
-      <div
-        v-for="item in projectStore.currentPageElements"
-        :key="item.id"
-      >
-        <VueDragResize
-          :active="projectStore.currentElement?.id === item.id"
-          :x="item.style.left || 0"
-          :y="item.style.top || 0"
-          :width="item.style.width"
-          :height="item.style.height"
-          :rotatable="false"
-          :immediate="true"
-          @click="projectStore.setCurrentElement(item.id)"
-          @dragging="onDragEnd"
-          @resizing="onDragEnd"
+    <div class="editor-body">
+      <div class="editor-body-pages">
+        <div
+          v-for="(item, index) in projectStore.project.pages"
+          :key="index"
+          class="page"
+          :class="{active: projectStore.currentPageIndex === index}"
+          @click="onPageClick(index)"
         >
-          <component
-            :is="materialMap[item.mId].name"
-            v-if="projectStore.isLoaded(item.mId)"
-            v-bind="item.props"
-          />
-          <div v-else>
-            loading
-          </div>
-        </VueDragResize>
+          {{ item.name }}
+        </div>
+        <div
+          class="add"
+          @click="onPageAdd"
+        >
+          添加页面
+        </div>
+      </div>
+      <div class="editor-body-elements">
+        <div
+          v-for="item in projectStore.currentPage.elements"
+          :key="item.id"
+          class="element"
+          :class="{active: item.id === projectStore.currentElementId}"
+          @click="onElementClick(item)"
+        >
+          {{ item.name }}
+        </div>
+      </div>
+      <div
+        ref="pageRef"
+        class="editor-body-page"
+      >
+        <div
+          v-for="item in projectStore.currentPageElements"
+          :key="item.id"
+        >
+          <VueDragResize
+            :active="projectStore.currentElement?.id === item.id"
+            :x="item.style.left || 0"
+            :y="item.style.top || 0"
+            :width="item.style.width"
+            :height="item.style.height"
+            :rotatable="false"
+            :immediate="true"
+            @click="projectStore.setCurrentElement(item.id)"
+            @dragging="onDragEnd"
+            @resizing="onDragEnd"
+          >
+            <component
+              :is="materialMap[item.mId].name"
+              v-if="projectStore.isLoaded(item.mId)"
+              v-bind="item.props"
+            />
+            <div v-else>
+              loading
+            </div>
+          </VueDragResize>
+        </div>
       </div>
     </div>
   </div>

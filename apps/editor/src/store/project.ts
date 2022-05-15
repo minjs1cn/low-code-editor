@@ -1,6 +1,6 @@
 import { defineStore } from 'pinia';
 import { computed, ref } from 'vue';
-import { IMaterial, IProject, PageElement, Project } from '@lowcode1024/shared';
+import { IMaterial, IProject, Page, PageElement, Project } from '@lowcode1024/shared';
 import { getMaterialRenderFun, getMaterialDefaultProps } from '@/data';
 import { loadMaterial, projectStorage } from '@/utils';
 import app from '../app';
@@ -95,11 +95,33 @@ export const useProjectStore = defineStore('project', () => {
     projectStorage.set(p.getJson());
   }
 
+  function setCurrentPageIndex(index: number) {
+    currentPageIndex.value = index;
+    currentElementId.value = undefined;
+  }
+
+  function addPage() {
+    const page = Page.create();
+    p.addPage(page);
+    project.value = p.getJson();
+  }
+
+  function changePageName(name: string) {
+    const page = p.getPageByIndex(currentPageIndex.value);
+    page.name = name;
+    project.value = p.getJson();
+  }
+
   return {
     project,
     currentPage,
     currentElement,
     currentPageElements,
+    currentPageIndex,
+    setCurrentPageIndex,
+    addPage,
+    currentElementId,
+    changePageName,
 
     addElement,
     changeElementProps,

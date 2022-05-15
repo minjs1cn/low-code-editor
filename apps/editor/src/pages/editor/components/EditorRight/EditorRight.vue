@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { getMaterialEditorProps, materialMap } from '@/data';
 import { useProjectStore } from '@/store';
-import { computed, watchEffect } from 'vue';
+import { computed } from 'vue';
 import './EditorRight.less';
 const projectStore = useProjectStore();
 
@@ -11,25 +11,26 @@ const editorProps = computed(() => {
   }
   return getMaterialEditorProps(materialMap[projectStore.currentElement.mId]);
 });
-const elementProps = computed(() => {
-  if (!projectStore.currentElement) {
-    return {};
-  }
-  return projectStore.currentElement.props;
-});
 function onPropsChange(e: Event, key: string) {
   const target = e.target as HTMLInputElement;
-  console.log(target.value);
   projectStore.changeElementProps({
     [key]: target.value,
   });
+}
+
+function onPageNameChange(e: Event) {
+  const target = e.target as HTMLInputElement;
+  projectStore.changePageName(target.value);
 }
 </script>
 
 <template>
   <div class="editor-right">
     <div v-if="projectStore.currentElement === undefined">
-      page
+      <input
+        :value="projectStore.currentPage.name"
+        @input="onPageNameChange($event)"
+      >
     </div>
     <div v-else-if="!projectStore.isLoaded(projectStore.currentElement.mId)">
       loading
