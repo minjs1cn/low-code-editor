@@ -1,8 +1,8 @@
 import { defineStore } from 'pinia';
 import { computed, ref } from 'vue';
-import { IElement, IMaterial, IProject, PageElement, Project } from '@lowcode1024/shared';
+import { IMaterial, IProject, PageElement, Project } from '@lowcode1024/shared';
 import { getMaterialRenderFun, getMaterialDefaultProps } from '@/data';
-import { loadMaterial } from '@/utils';
+import { loadMaterial, projectStorage } from '@/utils';
 import app from '../app';
 
 // 实例
@@ -91,6 +91,10 @@ export const useProjectStore = defineStore('project', () => {
     changeElementPropsByMid(material.id, getMaterialDefaultProps(material));
   }
 
+  function saveProject() {
+    projectStorage.set(p.getJson());
+  }
+
   return {
     project,
     currentPage,
@@ -104,5 +108,6 @@ export const useProjectStore = defineStore('project', () => {
 
     load,
     isLoaded,
+    saveProject,
   };
 });

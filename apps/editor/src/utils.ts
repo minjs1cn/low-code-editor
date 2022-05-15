@@ -38,10 +38,34 @@ export function loadScript(src: string) {
 }
 
 export async function loadMaterial(m: IMaterial) {
-  await delay(10000);
+  await delay(Math.random() * 1000);
   return loadScript(m.source);
 }
 
 export function loadMaterials(materials: IMaterial[]) {
   return Promise.all(materials.map(m => loadMaterial(m)));
 }
+
+export function Storage(name: string) {
+  const key = `__${name}`;
+
+  function get() {
+    return JSON.parse(localStorage.getItem(key));
+  }
+
+  function set(value: Record<string, any>) {
+    localStorage.setItem(key, JSON.stringify(value));
+  }
+
+  function remove() {
+    localStorage.removeItem(key);
+  }
+
+  return {
+    get,
+    set,
+    remove,
+  };
+}
+
+export const projectStorage = Storage('project');
