@@ -6,7 +6,7 @@ import { loadMaterial, projectStorage } from '@/utils';
 import app from '../app';
 
 // 实例
-const p = Project.create();
+export const p = Project.create();
 // 响应式对象
 
 export const useProjectStore = defineStore('project', () => {

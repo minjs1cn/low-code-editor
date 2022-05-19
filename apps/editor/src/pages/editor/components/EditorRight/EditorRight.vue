@@ -1,9 +1,10 @@
 <script setup lang="ts">
 import { getMaterialEditorProps, materialMap } from '@/data';
-import { useProjectStore } from '@/store';
+import { useProjectStore, useEventStore } from '@/store';
 import { computed } from 'vue';
 import './EditorRight.less';
 const projectStore = useProjectStore();
+const eventStore = useEventStore();
 
 const editorProps = computed(() => {
   if (!projectStore.currentElement) {
@@ -21,6 +22,15 @@ function onPropsChange(e: Event, key: string) {
 function onPageNameChange(e: Event) {
   const target = e.target as HTMLInputElement;
   projectStore.changePageName(target.value);
+}
+
+function onEventSave() {
+  eventStore.saveEvent(projectStore.currentPageIndex, projectStore.currentElementId);
+}
+
+function onEventArgsChange(e: Event, index: number) {
+  const ev = e.target as HTMLInputElement;
+  eventStore.saveArgs(ev.value, index);
 }
 </script>
 
@@ -56,6 +66,41 @@ function onPageNameChange(e: Event) {
           :value="editorProps[key].defaultValue"
           @input="onPropsChange($event, key)"
         >
+        <div>
+          <select
+            :value="eventStore.currentType"
+            @change="e => eventStore.onTypeChange((e.target as any).value)"
+          >
+            <option
+              v-for="item in eventStore.editorEvents"
+              :key="item.type"
+            >
+              {{ item.type }}
+            </option>
+          </select>
+          <select>
+            <option
+              v-for="item in eventStore.currentEvents"
+              :key="item.name"
+            >
+              {{ item.name }}
+            </option>
+          </select>
+          <div v-if="eventStore.currentEventArgs">
+            <div
+              v-for="(item, index) in eventStore.currentEventArgs"
+              :key="index"
+            >
+              <input
+                v-if="item.type === 'string'"
+                @input="onEventArgsChange($event, index)"
+              >
+            </div>
+          </div>
+          <button @click="onEventSave">
+            save
+          </button>
+        </div>
       </div>
     </div>
   </div>

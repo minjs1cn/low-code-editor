@@ -8,7 +8,7 @@ importers:
       '@typescript-eslint/parser': ^5.19.0
       '@vitejs/plugin-vue': ^2.3.1
       eslint: ^8.14.0
-      eslint-config-jammy: ^0.0.9
+      eslint-config-jammy: ^0.0.10
       eslint-define-config: ^1.3.0
       eslint-plugin-vue: ^8.6.0
       less: ^4.1.2
@@ -27,7 +27,7 @@ importers:
       '@typescript-eslint/parser': 5.19.0_eslint@8.14.0+typescript@4.6.3
       '@vitejs/plugin-vue': 2.3.1_vite@2.9.5+vue@3.2.33
       eslint: 8.14.0
-      eslint-config-jammy: 0.0.9_eslint@8.14.0+typescript@4.6.3
+      eslint-config-jammy: 0.0.10_eslint@8.14.0+typescript@4.6.3
       eslint-define-config: 1.3.0
       eslint-plugin-vue: 8.6.0_eslint@8.14.0
       less: 4.1.2
@@ -43,11 +43,13 @@ importers:
     specifiers:
       '@lowcode1024/shared': workspace:^0.0.1
       pinia: ^2.0.13
+      tiny-emitter: ^2.1.0
       vue-drag-resize-next: ^0.0.2-alpha.3
       vue-router: ^4.0.14
     dependencies:
       '@lowcode1024/shared': link:../../packages/shared
       pinia: 2.0.13_typescript@4.6.3+vue@3.2.33
+      tiny-emitter: 2.1.0
       vue-drag-resize-next: 0.0.2-alpha.3
       vue-router: 4.0.14_vue@3.2.33
 
@@ -780,7 +782,7 @@ packages:
     dev: true
 
   /ast-types-flow/0.0.7:
-    resolution: {integrity: sha1-9wtzXGvKGlycItmCw+Oef+ujva0=}
+    resolution: {integrity: sha512-eBvWn1lvIApYMhzQMsu9ciLfkBY499mFZlNqG+/9WR7PVlroQw0vG30cOQQbaKz3sCEc44TAOu2ykzqXSNnwag==}
     dev: true
 
   /available-typed-arrays/1.0.5:
@@ -1504,8 +1506,8 @@ packages:
     engines: {node: '>=10'}
     dev: true
 
-  /eslint-config-jammy/0.0.9_eslint@8.14.0+typescript@4.6.3:
-    resolution: {integrity: sha512-VWXGRrlnpTIsH8w/nrtHEsjqs/PIXbE5XH7jOZFYTdif136FRmD+FTrJBWAr3UFq+1v/aVbnRta/eUVOONYWEQ==}
+  /eslint-config-jammy/0.0.10_eslint@8.14.0+typescript@4.6.3:
+    resolution: {integrity: sha512-sWCx0UoZMTnVTnv8HRTAUASkndKXVidpZlfn4CGCKkXVh142R3gZOKFWuRBa4C4e1f6M2baDFuLpXPeEexV5Tw==}
     peerDependencies:
       eslint: '>=8.14.0'
       typescript: ^4.6.3
@@ -2868,6 +2870,10 @@ packages:
   /text-table/0.2.0:
     resolution: {integrity: sha1-f17oI66AUgfACvLfSoTsP8+lcLQ=}
     dev: true
+
+  /tiny-emitter/2.1.0:
+    resolution: {integrity: sha512-NB6Dk1A9xgQPMoGqC5CVXn123gWyte215ONT5Pp5a0yt4nlEoO1ZWeCwpncaekPHXO60i47ihFnZPiRPjRMq4Q==}
+    dev: false
 
   /tinypool/0.1.3:
     resolution: {integrity: sha512-2IfcQh7CP46XGWGGbdyO4pjcKqsmVqFAPcXfPxcPXmOWt9cYkTP9HcDmGgsfijYoAEc4z9qcpM/BaBz46Y9/CQ==}
