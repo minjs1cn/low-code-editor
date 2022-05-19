@@ -8,10 +8,13 @@ importers:
       '@typescript-eslint/parser': ^5.19.0
       '@vitejs/plugin-vue': ^2.3.1
       eslint: ^8.14.0
-      eslint-config-jammy: ^0.0.10
+      eslint-config-jammy: ^0.0.11
       eslint-define-config: ^1.3.0
       eslint-plugin-vue: ^8.6.0
       less: ^4.1.2
+      pinia: ^2.0.13
+      pkg-get: ^0.0.2
+      tiny-emitter: ^2.1.0
       typescript: ^4.6.3
       unbuild: ^0.7.4
       vite: ^2.9.5
@@ -20,17 +23,24 @@ importers:
       vite-tsconfig-paths: ^3.4.1
       vitest: ^0.10.0
       vue: ^3.2.33
+      vue-drag-resize-next: ^0.0.2-alpha.3
+      vue-router: ^4.0.14
     dependencies:
+      pinia: 2.0.13_typescript@4.6.3+vue@3.2.33
+      tiny-emitter: 2.1.0
       vue: 3.2.33
+      vue-drag-resize-next: 0.0.2-alpha.3
+      vue-router: 4.0.14_vue@3.2.33
     devDependencies:
       '@typescript-eslint/eslint-plugin': 5.19.0_851e4194b2dcd49c3bd3bab657985903
       '@typescript-eslint/parser': 5.19.0_eslint@8.14.0+typescript@4.6.3
       '@vitejs/plugin-vue': 2.3.1_vite@2.9.5+vue@3.2.33
       eslint: 8.14.0
-      eslint-config-jammy: 0.0.10_eslint@8.14.0+typescript@4.6.3
+      eslint-config-jammy: 0.0.11_eslint@8.14.0+typescript@4.6.3
       eslint-define-config: 1.3.0
       eslint-plugin-vue: 8.6.0_eslint@8.14.0
       less: 4.1.2
+      pkg-get: 0.0.2
       typescript: 4.6.3
       unbuild: 0.7.4
       vite: 2.9.5_less@4.1.2
@@ -1506,8 +1516,8 @@ packages:
     engines: {node: '>=10'}
     dev: true
 
-  /eslint-config-jammy/0.0.10_eslint@8.14.0+typescript@4.6.3:
-    resolution: {integrity: sha512-sWCx0UoZMTnVTnv8HRTAUASkndKXVidpZlfn4CGCKkXVh142R3gZOKFWuRBa4C4e1f6M2baDFuLpXPeEexV5Tw==}
+  /eslint-config-jammy/0.0.11_eslint@8.14.0+typescript@4.6.3:
+    resolution: {integrity: sha512-LtycaVXM/F2eo7v2NDv4PmsUHzpigyl570PfCXbwdWgaV3VNCnBfaeQdawNJuEr0UGYa8YdJdxmNGiJozfWbAw==}
     peerDependencies:
       eslint: '>=8.14.0'
       typescript: ^4.6.3
@@ -2567,6 +2577,10 @@ packages:
       vue: 3.2.33
       vue-demi: 0.12.5_vue@3.2.33
     dev: false
+
+  /pkg-get/0.0.2:
+    resolution: {integrity: sha512-BMYaCZT94l+khvRI1yxpzudzS2tIYnRQZS4sR9KnONhyeG7rDDYZy9OrfmkASy8k+dMR2/LbdH+tX51cExzNLg==}
+    dev: true
 
   /pkg-types/0.3.2:
     resolution: {integrity: sha512-eBYzX/7NYsQEOR2alWY4rnQB49G62oHzFpoi9Som56aUr8vB8UGcmcIia9v8fpBeuhH3Ltentuk2OGpp4IQV3Q==}
